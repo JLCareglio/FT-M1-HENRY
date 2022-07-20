@@ -1,0 +1,79 @@
+Diferencia entre declarar una variable con var y directamente asignarle un valor:
+Las variables declaradas se limitan al contexto de ejecución en el cual son declaradas. Las variables no declaradas siempre son globales
+
+------------------
+# Scope & Hoisting
+## Salida de Ej1
+10
+8
+8
+9
+10
+1
+
+## Salida de Ej2
+undefined
+ERROR: baz no esta definida
+
+## Salida de Ej3
+Franco
+
+## Salida de Ej4
+Tony
+Franco
+Tony
+
+## Salida de Ej5
+The Flash
+Reverse Flash
+The Flash
+Franco
+
+------------------
+# Coerción de Datos
+6 / "3" --------> 2
+"2" * "3" ------> 6
+4 + 5 + "px" ---> "9px"
+"$" + 4 + 5 ----> "$45"
+"4" - 2 --------> 2
+"4px" - 2 ------> NaN
+7 / 0 ----------> Infinity
+{}[0] ----------> [0]
+parseInt("09") -> 9
+5 && 2 ---------> 2
+2 && 5 ---------> 5
+5 || 0 ---------> 5
+0 || 5 ---------> 5
+[3]+[3]-[10] ---> 23
+3>2>1 ----------> false
+[] == ![] ------> true
+
+------------------
+# Hoisting
+## Salida de Ej1
+undefined
+2
+## Explicacion
+vemos undefined en lugar del numero 1 porque en el Hoisting se "sube" la declaracion de las variables (var a) pero no las asignaciones (a = 1)
+
+## Salida de Ej2
+SIN SALIDA pero:
+getFood(false) retorna undefined
+getFood(true) retorna "Friskies"
+## Explicacion
+Hoisting tambien sube la <var snack> que esta dentro del contexto de ejecucion en <getFood(bool)>
+
+## Salida de Ej3
+Aurelio De Rosa
+Juan Perez
+## Explicacion
+Al final test() retorna Juan Perez porque el <return this.fullname> esta dentro de una funcion, por lo que, ese this apunta al global.
+
+------------------
+# Event loop
+1
+4
+3
+2
+## Explicacion
+http://latentflip.com/loupe/?code=!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
