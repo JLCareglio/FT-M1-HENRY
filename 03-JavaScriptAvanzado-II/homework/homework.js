@@ -45,11 +45,11 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
-  const pepeResultados = {}; // Este objeto guardara los resultados ya procesados
-  return (input) => {
-    if (pepeResultados.hasOwnProperty(input)) return pepeResultados[input];
-    pepeResultados[input] = cb(input);
-    return pepeResultados[input];
+  const pepeResultados = {};
+  return (arg) => {
+    if (!pepeResultados.hasOwnProperty(arg))
+      pepeResultados[arg] = cb(arg);
+    return pepeResultados[arg];
   };
 }
 
