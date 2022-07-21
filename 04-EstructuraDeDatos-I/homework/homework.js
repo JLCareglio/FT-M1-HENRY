@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /*
 Definir las funciones recursivas nFactorial y nFibonacci.
@@ -15,9 +15,13 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
+  if (n > 1) return n * nFactorial(n - 1);
+  return 1;
 }
 
 function nFibonacci(n) {
+  if (n <= 1) return n;
+  return nFibonacci(n - 1) + nFibonacci(n - 2);
 }
 
 /*
@@ -29,8 +33,15 @@ Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde e
 Pueden utilizar class o función constructora.
 */
 
-function Queue() {
+// function Queue() {}
 
+class Queue {
+  constructor(fifo = []) {
+    this.fifo = fifo;
+  }
+  enqueue = (valor) => this.fifo.push(valor);
+  dequeue = () => this.fifo.shift();
+  size = () => this.fifo.length;
 }
 
 // No modifiquen nada debajo de esta linea
@@ -39,5 +50,5 @@ function Queue() {
 module.exports = {
   Queue,
   nFactorial,
-  nFibonacci
+  nFibonacci,
 };
