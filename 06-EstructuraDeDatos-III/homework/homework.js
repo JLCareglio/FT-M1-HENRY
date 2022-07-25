@@ -21,12 +21,15 @@ class BinarySearchTree {
   constructor(head = null) {
     this.head = head;
   }
+
   size(arbol = this.head) {
     if (arbol.left) return 1 + this.size(arbol.left);
     if (arbol.right) return 1 + this.size(arbol.right);
     return 0;
   }
+
   insert(nodo, arbol = this.head) {
+    if (!this.head) this.head = nodo;
     if (arbol.data < nodo.data) {
       if (arbol.left) this.insert(nodo, arbol.left);
       else arbol.left = nodo;
@@ -36,10 +39,19 @@ class BinarySearchTree {
       else arbol.right = nodo;
     }
   }
-  contains() {}
+
+  contains(valor, arbol = this.head) {
+    if (arbol.data === valor) return true;
+    if (arbol.left) return contains(valor, arbol.left);
+    if (arbol.right) return contains(valor, arbol.right);
+  }
+
   depthFirstForEach() {}
+
   breadthFirstForEach() {}
 }
+
+const arbolito = new BinarySearchTree();
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 
