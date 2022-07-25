@@ -11,8 +11,8 @@
   El ábrol utilizado para hacer los tests se encuentra representado en la imagen bst.png dentro del directorio homework.
 */
 class Node {
-  constructor(value, left = null, right = null) {
-    this.value = value;
+  constructor(data, left = null, right = null) {
+    this.data = data;
     this.left = left;
     this.right = right;
   }
@@ -21,8 +21,21 @@ class BinarySearchTree {
   constructor(head = null) {
     this.head = head;
   }
-  size() {}
-  insert() {}
+  size(arbol = this.head) {
+    if (arbol.left) return 1 + this.size(arbol.left);
+    if (arbol.right) return 1 + this.size(arbol.right);
+    return 0;
+  }
+  insert(nodo, arbol = this.head) {
+    if (arbol.data < nodo.data) {
+      if (arbol.left) this.insert(nodo, arbol.left);
+      else arbol.left = nodo;
+    }
+    if (arbol.data > nodo.data) {
+      if (arbol.right) this.insert(nodo, arbol.right);
+      else arbol.right = nodo;
+    }
+  }
   contains() {}
   depthFirstForEach() {}
   breadthFirstForEach() {}
