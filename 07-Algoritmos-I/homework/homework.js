@@ -45,27 +45,12 @@ function selectionSort(array) {
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-  // for (let i = 0; i < array.length; i++) {
-  //   let min = i;
-  //   for (let j = min; j < array.length; j++) {
-  //     if (array[j] < array[min]) min = j;
-  //   }
-  //   intercambiar(i, min, array);
-  // }
-
   for (let i = 0; i < array.length; i++) {
-    var minimo = i; // posicion del valor minimo en el arr
-    for (let x = i + 1; x < array.length; x++) {
-      if (array[x] < array[minimo]) {
-        minimo = x;
-      }
+    let min = i;
+    for (let j = i + 1; j < array.length; j++) {
+      if (array[j] < array[min]) min = j;
     }
-    // salgo del for = encontré el valor minimo sin ordenar
-    if (minimo !== i) {
-      let aux = array[i];
-      array[i] = array[minimo];
-      array[minimo] = aux;
-    }
+    if (min !== i) intercambiar(i, min, array);
   }
   return array;
 }
