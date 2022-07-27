@@ -45,65 +45,37 @@ class BinarySearchTree {
   }
 
   depthFirstForEach(cb, dfs) {
-    // if (dfs === "post-order") {
-    //   // Post-Order
-    //   // Bottom -> Top
-    //   // Left -> Right
-    // } else if (dfs === "pre-order") {
-    //   // Pre-Order
-    //   // Top -> Bottom
-    //   // Left -> Right
-    // } else {
-    //   // In-Order
-    //   // Left -> Node -> Right
-    // }
-
-    if (dfs === "pre-order") {
+    if (dfs === "post-order") {
+      // Post-Order
+      // Bottom -> Top
+      // Left -> Right
+      if (this.left) this.left.depthFirstForEach(cb, dfs);
+      if (this.right) this.right.depthFirstForEach(cb, dfs);
       cb(this.value);
-      if (this.left) {
-        this.left.depthFirstForEach(cb, dfs);
-      }
-      if (this.right) {
-        this.right.depthFirstForEach(cb, dfs);
-      }
-    } else if (dfs === "post-order") {
-      if (this.left) {
-        this.left.depthFirstForEach(cb, dfs);
-      }
-      if (this.right) {
-        this.right.depthFirstForEach(cb, dfs);
-      }
+    } else if (dfs === "pre-order") {
+      // Pre-Order
+      // Top -> Bottom
+      // Left -> Right
       cb(this.value);
+      if (this.left) this.left.depthFirstForEach(cb, dfs);
+      if (this.right) this.right.depthFirstForEach(cb, dfs);
     } else {
-      // in-order
-      if (this.left) {
-        this.left.depthFirstForEach(cb, dfs);
-      }
+      // In-Order
+      // Left -> Node -> Right
+      if (this.left) this.left.depthFirstForEach(cb, dfs);
       cb(this.value);
-      if (this.right) {
-        this.right.depthFirstForEach(cb, dfs);
-      }
+      if (this.right) this.right.depthFirstForEach(cb, dfs);
     }
   }
 
   breadthFirstForEach(cb, array) {
-    if (array == null) {
-      var array = [];
-    }
-    if (this.left) {
-      array.push(this.left);
-    }
-    if (this.right) {
-      array.push(this.right);
-    }
+    if (array == null) var array = [];
+    if (this.left) array.push(this.left);
+    if (this.right) array.push(this.right);
     cb(this.value);
     array.length > 0 && array.shift().breadthFirstForEach(cb, array);
-    // if(array.length > 0) array.shift().breadthFirstForEach(cb, array)
   }
 }
-const arbolito = new BinarySearchTree(20);
-console.log(arbolito.size());
-arbolito.insert(22);
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
