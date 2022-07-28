@@ -1,18 +1,15 @@
 "use strict";
 // No cambies los nombres de las funciones.
-
 function quickSort(array) {
   if (array.length > 1) {
-    let pivote = Math.floor(Math.random() * array.length);
+    let pivote = array.splice(Math.floor(Math.random() * array.length), 1);
     let aL = [];
     let aR = [];
-    let aIguales = array.splice(pivote, 1);
     for (let i = 0; i < array.length; i++) {
-      if (array[i] < aIguales[0]) aL.push(array[i]);
-      else if (array[i] > aIguales[0]) aR.push(array[i]);
-      else aIguales.push(array[i]);
+      if (array[i] <= pivote[0]) aL.push(array[i]);
+      else aR.push(array[i]);
     }
-    
+    return quickSort(aL).concat(pivote).concat(quickSort(aR));
   } else return array;
 }
 
