@@ -11,6 +11,11 @@ const { Queue, Node, LinkedList, BinarySearchTree } = require("./DS.js");
 
 var countArray = function (array) {
   // Tu código aca:
+  let sum = 0;
+  array.forEach((element) => {
+    sum += Array.isArray(element) ? countArray(element) : element;
+  });
+  return sum;
 };
 
 // Implementar la función countProps: a partir de un objeto en el cual cada propiedad puede contener
@@ -32,35 +37,38 @@ var countArray = function (array) {
 
 var countProps = function (obj) {
   // Tu código aca:
-  let count = 0;
-  Object.entries(obj).forEach(([key, value]) => {
-    if (value instanceof Object) count += countProps(value);
-    else count++;
-  });
-  return count;
+  let acum = 0;
+  acum += Object.keys(obj).length;
+  for (const key in obj) {
+    if (Object.hasOwnProperty.call(obj, key)) {
+      const element = obj[key];
+      if (typeof element === "object" && !Array.isArray(element)) {
+        acum += countProps(element);
+      }
+    }
+  }
+  return acum;
 };
-
-var obj10 = {
-  a: {
-    a1: 10,
-    a2: "Franco",
-    a3: { f: "r", a: "n", c: { o: true } },
-  },
-  b: 2,
-  c: [1, { a: 1 }, "Franco"],
-};
-console.log(countProps(obj10)); // obj10 es un objeto con un total de 10 propiedades
-
 // Implementar el método changeNotNumbers dentro del prototype de LinkedList que deberá cambiar
 // aquellos valores que no puedan castearse a numeros por 'Kiricocho' y devolver la cantidad de cambios que hizo
 // Aclaracion: si el valor del nodo puede castearse a número NO hay que reemplazarlo
 // Ejemplo 1:
 //    Suponiendo que la lista actual es: Head --> [1] --> ['2'] --> [false] --> ['Franco']
 //    lista.changeNotNumbers();
-//    Ahora la lista quedaría: Head --> [1] --> ['2'] --> [false] --> ['Kirikocho] y la función debería haber devuelto el valor 1
+//    Ahora la lista quedaría: Head --> [1] --> ['2'] --> [false] --> ['Kiricocho] y la función debería haber devuelto el valor 1
 
 LinkedList.prototype.changeNotNumbers = function () {
   // Tu código aca:
+  let puntero = this.head;
+  let cant = 0;
+  while (puntero) {
+    if (Number.isNaN(Number(puntero.value))) {
+      puntero.value = "Kiricocho";
+      cant++;
+    }
+    puntero = puntero.next;
+  }
+  return cant;
 };
 
 // Implementar la función mergeQueues que a partir de dos queues recibidas por parametro
@@ -73,6 +81,12 @@ LinkedList.prototype.changeNotNumbers = function () {
 
 var mergeQueues = function (queueOne, queueTwo) {
   // Tu código aca:
+  const newQueue = new Queue();
+  while (queueOne.size() || queueTwo.size()) {
+    if ((q1 = queueOne.dequeue())) newQueue.enqueue(q1);
+    if ((q2 = queueTwo.dequeue())) newQueue.enqueue(q2);
+  }
+  return newQueue;
 };
 
 // Implementar la funcion closureMult que permita generar nuevas funciones que representen
@@ -86,12 +100,34 @@ var mergeQueues = function (queueOne, queueTwo) {
 
 var closureMult = function (multiplier) {
   // Tu código aca:
+  return (num) => multiplier * num;
 };
 
 // Implementar el método sum dentro del prototype de BinarySearchTree
 // que debe retornar la suma total de los valores dentro de cada nodo del arbol
 BinarySearchTree.prototype.sum = function () {
   // Tu código aca:
+  let sum = this.value;
+  if (this.left) sum += this.left.sum();
+  if (this.right) sum += this.right.sum();
+  return sum;
+};
+
+BinarySearchTree.prototype.delete = function (value) {
+  // Comparar el valor del árbol con el valor a eliminar
+  // Si son iguales,
+  // evaluar si el árbol tiene nodos a la izquierda
+  // Si los tiene, recorrer la rama izquierda hasta el nodo hoja de mayor valor
+  // Si no los tiene, evaluar si tiene nodos a la derecha
+  // Si los tiene, recorrer la rama derecha hasta el nodo hoja de menor valor
+  // Si no los tiene,
+  // Si el valor a eliminar es mayor que el valor del árbol,
+  // almacenar una referencia al árbol
+  // tomar el nodo de la derecha como nuevo árbol
+  // Si el valor a eliminar es menor que el valor del árbol,
+  // almacenar una referencia al árbol
+  // tomar el nodo de la izquierda como nuevo árbol
+  //
 };
 
 module.exports = {
