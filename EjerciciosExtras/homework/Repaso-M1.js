@@ -62,7 +62,7 @@ LinkedList.prototype.changeNotNumbers = function () {
   let puntero = this.head;
   let cant = 0;
   while (puntero) {
-    if (Number.isNaN(Number(puntero.value))) {
+    if (isNaN(Number(puntero.value))) {
       puntero.value = "Kiricocho";
       cant++;
     }
