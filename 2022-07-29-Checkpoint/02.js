@@ -27,7 +27,6 @@ LinkedList.prototype.simplifyList = function () {
   }
 
   this.head = listaFiltrada.head;
-  return listaFiltrada;
 };
 // No modifiques nada debajo de esta linea //
 module.exports = {
