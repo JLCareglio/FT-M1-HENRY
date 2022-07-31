@@ -26,11 +26,19 @@ const { BinarySearchTree } = require("./DS");
 
 BinarySearchTree.prototype.searchMaxTwo = function () {
   // Tu código acá:
-  if (!this.right) return [this.value, this.left.searchMaxTwo()[0]];
   if (!this.right.right) return [this.right.value, this.value];
   return this.right.searchMaxTwo();
 };
 
+BinarySearchTree.prototype.searchMaxTwoPro = function () {
+  // Tu código acá:
+  if (!this.right) {
+    if (this.left) return [this.value, this.left.searchMaxTwoPro()[0]];
+    else return [this.value];
+  }
+  if (!this.right.right) return [this.right.value, this.value];
+  return this.right.searchMaxTwoPro();
+};
 // No modifiques nada debajo de esta linea //
 
 module.exports = {
