@@ -21,6 +21,7 @@ describe("EJERCICIO 06: searchMaxtwo", function () {
     tree.insert(3);
     tree.insert(44);
     tree.insert(2);
+
     tree2.insert(6);
     tree2.insert(5);
     tree2.insert(42);
@@ -28,13 +29,18 @@ describe("EJERCICIO 06: searchMaxtwo", function () {
     tree2.insert(1);
     tree2.insert(53);
     tree2.insert(12);
+
     tree3.insert(6);
     tree3.insert(14);
     tree3.insert(2);
     tree3.insert(5);
 
+    tree4.insert(6);
+    tree4.insert(2);
+
     expect(tree.searchMaxTwo()).toEqual([44, 33]);
     expect(tree2.searchMaxTwo()).toEqual([53, 42]);
     expect(tree3.searchMaxTwo()).toEqual([16, 14]);
+    expect(tree4.searchMaxTwo()).toEqual([16, 6]);
   });
 });
