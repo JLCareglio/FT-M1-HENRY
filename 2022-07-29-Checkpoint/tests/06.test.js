@@ -37,6 +37,7 @@ describe("EJERCICIO 06: searchMaxtwo", function () {
     var tree3 = new BinarySearchTree(16);
     var tree4 = new BinarySearchTree(16);
     var tree5 = new BinarySearchTree(16);
+    var tree6 = new BinarySearchTree(16);
 
     tree.insert(6);
     tree.insert(23);
@@ -76,5 +77,6 @@ describe("EJERCICIO 06: searchMaxtwo", function () {
     expect(tree3.searchMaxTwoPro()).toEqual([16, 14]);
     expect(tree4.searchMaxTwoPro()).toEqual([16, 6]);
     expect(tree5.searchMaxTwoPro()).toEqual([16, 6]);
+    expect(tree6.searchMaxTwoPro()).toEqual([16]);
   });
 });
